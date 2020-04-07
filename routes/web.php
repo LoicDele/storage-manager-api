@@ -16,9 +16,10 @@ $router->get('/', function () {
 });
 //Routing for products
 $router->get('/products', 'ProductController@index');
-
-$router->get('/product/{id}', 'ProductController@show');
-
+$router->get('/products/{id}', 'ProductController@show');
+$router->post('/products', 'ProductController@create');
+$router->put('/products/$id', 'ProductController@update');
+$router->delete('products/$id', 'ProductController@delete');
 //Routing for product's categories
 
 //Routing for product's suppliers
