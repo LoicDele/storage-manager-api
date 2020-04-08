@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
-use Psr\Log\NullLogger;
 
 class ProductController extends Controller
 {
@@ -12,7 +11,6 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return response()->json($products);
-        //return 'products';
     }
 
     public function show($id)
@@ -20,39 +18,53 @@ class ProductController extends Controller
         $product = Product::find($id);
         if ($product == null)
         {
-           return response()->json();
+           return response()->json('The product doesn\'t exist.',404);
         }
-        return response()->json($product);
+        return response()->json($product, 200);
     }
 
     public function create(Request $request)
     {
+        $this->validate($request, Product::getRules());
         $product = new Product();
         $product->name= $request->name;
-        $product->salePrice = $request->salePrice;
         $product->purchasePrice = $request->purchasePrice;
+        $product->salePrice = $request->salePrice;
         $product->description = $request->description;
         $product->save();
-        return response()->json($product);
+        return response()->json($product,200);
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, Product::getRules());
         $product = Product::find($id);
-        $product->name= $request->name;
-        $product->salePrice = $request->salePrice;
-        $product->purchasePrice = $request->purchasePrice;
-        $product->description = $request->description;
-        $product->save();
-        return response()->json($product);
-
+        if ($product == null)
+        {
+            return response()->json('The product doesn\'t exist.', 404);
+        }
+        else
+        {
+            $product->name= $request->name;
+            $product->salePrice = $request->salePrice;
+            $product->purchasePrice = $request->purchasePrice;
+            $product->description = $request->description;
+            $product->save();
+            return response()->json($product);
+        }
     }
 
     public function delete($id)
     {
         $product = Product::find($id);
-        $product->delete();
-        return response()->json('the product is deleted');
+        if ($product == null)
+        {
+            return response()->json('The product doesn\'t exist.', 404);
+        }
+        else {
+            $product->delete();
+            return response()->json('the product is deleted', 200);
+        }
     }
 
 }

@@ -10,5 +10,19 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'name', 'salePrice', 'purchasePrice', 'description'
+    ];
 
+    protected $hidden = [];
+
+    public static function getRules()
+    {
+        return [
+            'name' => 'required|unique:products',
+            'salePrice' => 'required|numeric',
+            'purchasePrice' => 'required|numeric',
+            'description' => 'required',
+        ];
+    }
 }

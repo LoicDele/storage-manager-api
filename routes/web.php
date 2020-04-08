@@ -18,8 +18,8 @@ $router->get('/', function () {
 $router->get('/products', 'ProductController@index');
 $router->get('/products/{id}', 'ProductController@show');
 $router->post('/products', 'ProductController@create');
-$router->put('/products/$id', 'ProductController@update');
-$router->delete('products/$id', 'ProductController@delete');
+$router->put('/products/{id}', 'ProductController@update');
+$router->delete('products/{id}', 'ProductController@delete');
 //Routing for product's categories
 
 //Routing for product's suppliers
