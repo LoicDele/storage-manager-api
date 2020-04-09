@@ -29,6 +29,7 @@ $factory->define(\App\Product::class, function (Faker $faker) {
         'salePrice' => $faker->biasedNumberBetween(1,100),
         'purchasePrice' => $faker->biasedNumberBetween(1, 100),
         'description' => $faker->text(),
+        'category_id' => $faker->biasedNumberBetween(1, 10),
     ];
 });
 
