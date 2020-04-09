@@ -20,6 +20,10 @@ $router->get('/products/{id}', 'ProductController@show');
 $router->post('/products', 'ProductController@create');
 $router->put('/products/{id}', 'ProductController@update');
 $router->delete('products/{id}', 'ProductController@delete');
-//Routing for product's categories
-
+//Routing for product categories
+$router->get('/productCategories', 'ProductCategoryController@index');
+$router->get('/productCategories/{id}', 'ProductCategoryController@show');
+$router->post('/productCategories', 'ProductCategoryController@create');
+$router->put('/productCategories/{id}', 'ProductCategoryController@update');
+$router->delete('productCategories/{id}', 'ProductCategoryController@delete');
 //Routing for product's suppliers

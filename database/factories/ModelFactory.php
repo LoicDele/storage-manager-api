@@ -31,3 +31,7 @@ $factory->define(\App\Product::class, function (Faker $faker) {
         'description' => $faker->text(),
     ];
 });
+
+$factory->define(\App\ProductCategory::class, function (Faker $faker) {
+   return ['name' => $faker->name];
+});
