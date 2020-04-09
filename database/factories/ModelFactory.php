@@ -22,3 +22,12 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->email,
     ];
 });
+
+$factory->define(\App\Product::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'salePrice' => $faker->biasedNumberBetween(1,100),
+        'purchasePrice' => $faker->biasedNumberBetween(1, 100),
+        'description' => $faker->text(),
+    ];
+});
