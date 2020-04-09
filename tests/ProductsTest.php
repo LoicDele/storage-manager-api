@@ -54,5 +54,6 @@ class ProductsTest extends TestCase
         $product = Product::all()->random();
         $this->json("delete", "/products/{$product->id}");
         $this->assertResponseOk();
+        $this->notSeeInDatabase("products", $product->toArray());
     }
 }
