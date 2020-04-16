@@ -3,6 +3,8 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
+use App\Product;
+use App\ProductCategory;
 use Faker\Generator as Faker;
 
 /*
@@ -23,16 +25,16 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\Product::class, function (Faker $faker) {
+$factory->define(Product::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->word,
         'salePrice' => $faker->biasedNumberBetween(1,100),
         'purchasePrice' => $faker->biasedNumberBetween(1, 100),
         'description' => $faker->text(),
-        'category_id' => $faker->biasedNumberBetween(1, 10),
+        'category_id' => ProductCategory::all()->random()->id,
     ];
 });
 
-$factory->define(\App\ProductCategory::class, function (Faker $faker) {
-   return ['name' => $faker->name];
+$factory->define(ProductCategory::class, function (Faker $faker) {
+   return ['name' => $faker->word];
 });
