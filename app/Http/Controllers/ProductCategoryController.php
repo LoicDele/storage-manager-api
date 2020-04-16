@@ -11,4 +11,10 @@ class ProductCategoryController extends Controller
     {
         return ProductCategory::all();
     }
+    public function show($id)
+    {
+        $category = ProductCategory::find($id);
+        $products = $category->products()->get();
+        return response()->json([$category, $products], 200);
+    }
 }
