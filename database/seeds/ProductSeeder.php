@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 50)->create()->each(function ($product) {
+        factory(Product::class, 10)->create()->each(function ($product) {
             $product->save();
         });
     }

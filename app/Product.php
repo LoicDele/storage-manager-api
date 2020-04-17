@@ -11,7 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'salePrice', 'purchasePrice', 'description'
+        'name', 'salePrice', 'purchasePrice', 'description', 'category_id'
     ];
 
     protected $hidden = [];

@@ -17,6 +17,7 @@ class ProductCategoryController extends Controller
         $products = $category->products()->get();
         return response()->json([$category, $products], 200);
     }
+
     public function create(Request $request)
     {
         $this->validate($request, ProductCategory::getRules());
@@ -24,6 +25,7 @@ class ProductCategoryController extends Controller
         $category->save();
         return response()->json($category,200);
     }
+
     public function update(Request $request, $id)
     {
         $this->validate($request, ProductCategory::getRules());
@@ -38,6 +40,19 @@ class ProductCategoryController extends Controller
             $category->save();
             return response()->json($category,200);
         }
+    }
 
+    public function delete($id)
+    {
+        $category = ProductCategory::find($id);
+        if($category == null)
+        {
+            return response()->json('The product category doesn\'t exist.', 404);
+        }
+        else
+        {
+            $category->delete();
+            return response()->json('the product category is deleted', 200);
+        }
     }
 }

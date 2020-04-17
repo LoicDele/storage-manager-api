@@ -12,7 +12,7 @@ class ProductCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        factory(ProductCategory::class, 50)->create()->each(function ($productCategory) {
+        factory(ProductCategory::class, 10)->create()->each(function ($productCategory) {
             $productCategory->save();
         });
     }

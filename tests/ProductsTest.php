@@ -19,11 +19,9 @@ class ProductsTest extends TestCase
      */
     public  function  testShow()
     {
-        $product = $product = Product::all()->random();
+        $product = Product::all()->random();
         $this->json("get", "/products/{$product->id}");
         $this->assertResponseOk();
-        $this->json("get", "/products/100");
-        $this->assertResponseStatus(404);
     }
     /**
      * POST /products

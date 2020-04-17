@@ -26,11 +26,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Product::getRules());
-        $product = new Product();
-        $product->name= $request->name;
-        $product->purchasePrice = $request->purchasePrice;
-        $product->salePrice = $request->salePrice;
-        $product->description = $request->description;
+        $product = new Product($request->all());
         $product->save();
         return response()->json($product,200);
     }
@@ -45,10 +41,7 @@ class ProductController extends Controller
         }
         else
         {
-            $product->name= $request->name;
-            $product->salePrice = $request->salePrice;
-            $product->purchasePrice = $request->purchasePrice;
-            $product->description = $request->description;
+            $product->fill($request->all());
             $product->save();
             return response()->json($product);
         }
