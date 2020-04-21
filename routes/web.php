@@ -27,3 +27,8 @@ $router->post('/productCategories', 'ProductCategoryController@create');
 $router->put('/productCategories/{id}', 'ProductCategoryController@update');
 $router->delete('productCategories/{id}', 'ProductCategoryController@delete');
 //Routing for product's suppliers
+$router->get('/productSuppliers', 'ProductSupplierController@index');
+$router->get('/productSuppliers/{id}', 'ProductSupplierController@show');
+$router->post('/productSuppliers', 'ProductSupplierController@create');
+$router->put('/productSuppliers/{id}', 'ProductSupplierController@update');
+$router->delete('productSuppliers/{id}', 'ProductSupplierController@delete');
