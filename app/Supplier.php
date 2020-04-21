@@ -8,10 +8,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Product extends Model
+class Supplier extends Model
 {
     protected $fillable = [
-        'name', 'salePrice', 'purchasePrice', 'description', 'category_id'
+        'name', 'phoneNumber', 'address', 'mail'
     ];
 
     protected $hidden = [];
@@ -20,19 +20,14 @@ class Product extends Model
     {
         return [
             'name' => 'required|unique:products',
-            'salePrice' => 'required|numeric',
-            'purchasePrice' => 'required|numeric',
-            'description' => 'required',
+            'phoneNumber' => 'required|max:15',
+            'address' => 'required|max:100',
+            'mail' => 'required|email|max:30',
         ];
     }
 
-    public function category()
+    public function products()
     {
-        return $this->belongsTo(ProductCategory::class, 'category_id');
-    }
-
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class, 'supplier_id');
+        return $this->hasMany(Product::class, 'supplier_id');
     }
 }
