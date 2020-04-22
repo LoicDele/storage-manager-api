@@ -32,9 +32,19 @@ $factory->define(Product::class, function (Faker $faker) {
         'purchasePrice' => $faker->biasedNumberBetween(1, 100),
         'description' => $faker->text(),
         'category_id' => ProductCategory::all()->random()->id,
+        'supplier_id' => \App\Supplier::all()->random()->id,
     ];
 });
 
 $factory->define(ProductCategory::class, function (Faker $faker) {
    return ['name' => $faker->word];
+});
+
+$factory->define(\App\Supplier::class, function (Faker $faker) {
+   return [
+       'name' => $faker->company,
+       'phoneNumber' => $faker->phoneNumber,
+       'address' => $faker->address,
+       'mail' => $faker->email,
+   ];
 });

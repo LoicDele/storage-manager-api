@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Supplier;
 use http\Env\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class ProductSupplierController extends BaseController
+class SupplierController extends BaseController
 {
     //
     public function index()
