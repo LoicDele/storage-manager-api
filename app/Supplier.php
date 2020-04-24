@@ -19,7 +19,7 @@ class Supplier extends Model
     public static function getRules()
     {
         return [
-            'name' => 'required|unique:products',
+            'name' => 'required|unique:suppliers',
             'phoneNumber' => 'required|max:15',
             'address' => 'required|max:100',
             'mail' => 'required|email|max:30',

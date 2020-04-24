@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Supplier;
-use http\Env\Request;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class SupplierController extends BaseController
@@ -31,16 +31,40 @@ class SupplierController extends BaseController
 
     public function create(Request $request)
     {
-
+        $this->validate($request, Supplier::getRules());
+        $supplier = new Supplier($request->all());
+        $supplier->save();
+        return response()->json($supplier, 200);
     }
 
     public function update(Request $request, $id)
     {
-
+        $supplier = Supplier::find($id);
+        if($supplier == null)
+        {
+            return response()->json('The supplier doesn\'t exist.', 404);
+        }
+        else
+        {
+            $this->validate($request, Supplier::getRules());
+            $supplier->fill($request->all());
+            $supplier->save();
+            return response()->json($supplier, 200);
+        }
     }
 
     public function delete($id)
     {
+        $supplier = Supplier::find($id);
+        if($supplier == null)
+        {
+            return response()->json('The supplier doesn\'t exist.', 404);
+        }
+        else
+        {
+            $supplier->delete();
+            return response('The product is deleted', 200);
 
+        }
     }
 }

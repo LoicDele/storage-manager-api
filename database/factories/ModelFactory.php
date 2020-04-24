@@ -5,6 +5,7 @@
 use App\User;
 use App\Product;
 use App\ProductCategory;
+use App\Supplier;
 use Faker\Generator as Faker;
 
 /*
@@ -32,7 +33,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'purchasePrice' => $faker->biasedNumberBetween(1, 100),
         'description' => $faker->text(),
         'category_id' => ProductCategory::all()->random()->id,
-        'supplier_id' => \App\Supplier::all()->random()->id,
+        'supplier_id' => Supplier::all()->random()->id,
     ];
 });
 
