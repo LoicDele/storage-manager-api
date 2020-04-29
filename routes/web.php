@@ -32,3 +32,4 @@ $router->get('/productSuppliers/{id}', 'SupplierController@show');
 $router->post('/productSuppliers', 'SupplierController@create');
 $router->put('/productSuppliers/{id}', 'SupplierController@update');
 $router->delete('productSuppliers/{id}', 'SupplierController@delete');
+//Routing for product's suppliers

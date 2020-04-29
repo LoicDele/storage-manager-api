@@ -41,7 +41,7 @@ $factory->define(ProductCategory::class, function (Faker $faker) {
    return ['name' => $faker->word];
 });
 
-$factory->define(\App\Supplier::class, function (Faker $faker) {
+$factory->define(Supplier::class, function (Faker $faker) {
    return [
        'name' => $faker->company,
        'phoneNumber' => $faker->phoneNumber,
