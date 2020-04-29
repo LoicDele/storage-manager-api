@@ -33,3 +33,14 @@ $router->post('/productSuppliers', 'SupplierController@create');
 $router->put('/productSuppliers/{id}', 'SupplierController@update');
 $router->delete('productSuppliers/{id}', 'SupplierController@delete');
 //Routing for product's suppliers
+$router->get('/transactions', 'TransactionController@index');
+$router->get('/transactions/{id}', 'TransactionController@show');
+$router->post('/transactions', 'TransactionController@create');
+$router->put('/transactions/{id}', 'TransactionController@update');
+$router->delete('transactions/{id}', 'TransactionController@delete');
+//Routing for payment types
+$router->get('/paymentTypes', 'PaymentTypeController@index');
+$router->get('/paymentTypes/{id}', 'PaymentTypeController@show');
+$router->post('/paymentTypes', 'PaymentTypeController@create');
+$router->put('/paymentTypes/{id}', 'PaymentTypeController@update');
+$router->delete('paymentTypes/{id}', 'PaymentTypeController@delete');
