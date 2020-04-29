@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call('SupplierSeeder');
         $this->call('ProductCategoriesSeeder');
         $this->call('ProductSeeder');
+        $this->call('PaymentTypeSeeder');
+        $this->call('TransactionSeeder');
     }
 }

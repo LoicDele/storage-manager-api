@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\PaymentTypeController;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -24,6 +25,16 @@ class Transaction extends Model
             'number' => 'required',
             'paymentTypes_id' => 'required',
         ];
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function paymentType()
+    {
+        return $this->belongsTo(PaymentTypeController::class, 'paymentType_id');
     }
 
 }

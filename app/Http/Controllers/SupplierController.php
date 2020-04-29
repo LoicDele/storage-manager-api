@@ -6,7 +6,7 @@ use App\Supplier;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class SupplierController extends BaseController
+class SupplierController extends Controller
 {
     //
     public function index()

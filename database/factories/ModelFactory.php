@@ -6,6 +6,8 @@ use App\User;
 use App\Product;
 use App\ProductCategory;
 use App\Supplier;
+use App\Transaction;
+use App\PaymentType;
 use Faker\Generator as Faker;
 
 /*
@@ -48,4 +50,18 @@ $factory->define(Supplier::class, function (Faker $faker) {
        'address' => $faker->address,
        'mail' => $faker->email,
    ];
+});
+
+$factory->define(PaymentType::class, function (Faker $faker) {
+   return [
+     'name' => $faker->word,
+   ];
+});
+$factory->define(Transaction::class, function (Faker $faker) {
+    return [
+        'product_id' => Product::all()->random()->id,
+        'price' => $faker->biasedNumberBetween(1, 100),
+        'paymentTypes_id' => PaymentType::all()->random()->id,
+        'number' => $faker->biasedNumberBetween(1,100),
+    ];
 });

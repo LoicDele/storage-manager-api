@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use http\Env\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
-use App\Transaction;
+use App\PaymentType;
 
-class TransactionController extends Controller
+class PaymentTypeController extends Controller
 {
     public function index()
     {
