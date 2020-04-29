@@ -17,9 +17,9 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('number');
             $table->float('price');
-            $table->integer('product_id')->unsigned();
+            $table->integer('product_id')->unsigned()->nullable();
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('SET NULL');
         });
     }
 
