@@ -19,7 +19,7 @@ class ProductCategory extends Model
     public static function getRules()
     {
         return [
-            'name' => 'required|unique:product_categories',
+            'name' => 'required',
 
         ];
     }

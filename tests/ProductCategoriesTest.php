@@ -47,11 +47,20 @@ class ProductsCategoriesTest extends TestCase
      */
     public function testUpdate()
     {
-        $update = factory(ProductCategory::class)->raw();
+        $update = factory(ProductCategory::class)->create();
         $productCategory = ProductCategory::all()->random();
-        $this->json("put", "/productCategories/{$productCategory->id}", $update);
-        $this->assertResponseOk();
-        $this->seeInDatabase("product_categories", $update);
+        if(ProductCategory::where('name', '=', $productCategory->name)->first() == null or $update->name == $productCategory->name)
+        {
+            $this->json("put", "/productCategories/{$productCategory->id}", $update);
+            $this->assertResponseOk();
+            $this->seeInDatabase("product_categories", $update);
+        }
+        else
+        {
+            $this->json("put", "/productCategories/{$productCategory->id}", $update->toArray());
+            $this->assertResponseStatus(422);
+        }
+
     }
     /**
      * DELETE /productCategories/{id}
