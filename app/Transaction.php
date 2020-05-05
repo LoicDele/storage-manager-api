@@ -21,9 +21,9 @@ class Transaction extends Model
     {
         return [
             'price' => 'required',
-            'product_id' => 'required',
+            'product_id' => 'required|exists:products,id',
             'number' => 'required',
-            'paymentTypes_id' => 'required',
+            'paymentTypes_id' => 'required|exists:payment_types',
         ];
     }
 

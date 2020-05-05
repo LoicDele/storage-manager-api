@@ -44,3 +44,9 @@ $router->get('/paymentTypes/{id}', 'PaymentTypeController@show');
 $router->post('/paymentTypes', 'PaymentTypeController@create');
 $router->put('/paymentTypes/{id}', 'PaymentTypeController@update');
 $router->delete('paymentTypes/{id}', 'PaymentTypeController@delete');
+//Routing for Transactions
+$router->get('/transactions', 'TransactionController@index');
+$router->get('/transactions/{id}', 'TransactionController@show');
+$router->post('/transactions', 'TransactionController@create');
+$router->put('/transactions/{id}', 'TransactionController@update');
+$router->delete('transactions/{id}', 'TransactionController@delete');

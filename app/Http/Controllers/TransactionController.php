@@ -29,12 +29,26 @@ class TransactionController extends Controller
 
     public function create(Request $request)
     {
-
+        $this->validate($request, Transaction::getRules());
+        $transaction = new Transaction($request);
+        $transaction->save();
+        return response()->json($transaction, 200);
     }
 
     public function update($id, Request $request)
     {
-
+        $transaction = Transaction::find($id);
+        if($transaction == null)
+        {
+            $this->validate($request, Transaction::getRules());
+            $transaction->fill($request->all());
+            $transaction->save();
+            return response()->json($transaction, 200);
+        }
+        else
+        {
+            return response()->json('the transaction doesn\'t exist', 404);
+        }
     }
 
     public function delete($id)
