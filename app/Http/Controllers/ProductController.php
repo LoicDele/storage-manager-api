@@ -26,14 +26,21 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Product::getRules());
-        $product = new Product($request->all());
-        $product->save();
-        return response()->json($product,200);
+        if(Product::all()->where('name', '=', $request->name)->first() == null)
+        {
+            $product = new Product($request->all());
+            $product->save();
+            return response()->json($product,200);
+        }
+        else
+        {
+            return response()->json("The name has already been taken.",422);
+        }
+
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, Product::getRules());
         $product = Product::find($id);
         if ($product == null)
         {
@@ -41,9 +48,18 @@ class ProductController extends Controller
         }
         else
         {
-            $product->fill($request->all());
-            $product->save();
-            return response()->json($product);
+            $this->validate($request, Product::getRules());
+            if(Product::where('name', '=', $request->name)->first() == null or $product->name == $request->name)
+            {
+                $product->fill($request->all());
+                $product->save();
+                return response()->json($product);
+            }
+            else
+            {
+                return response()->json("The name has already been taken.",422);
+            }
+
         }
     }
 

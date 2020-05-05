@@ -29,7 +29,7 @@ class ProductsCategoriesTest extends TestCase
     public function testCreate()
     {
         $newProductCategory = factory(ProductCategory::class)->create();
-        if(ProductCategory::where('name', '=', $newProductCategory->name)->get() == null)
+        if(ProductCategory::where('name', '=', $newProductCategory->name)->first() == null)
         {
             $this->json("post", "/productCategories", $newProductCategory->toArray());
             $this->assertResponseOk();

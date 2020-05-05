@@ -19,12 +19,12 @@ class Product extends Model
     public static function getRules()
     {
         return [
-            'name' => 'required|unique:products',
+            'name' => 'required',
             'salePrice' => 'required|numeric',
             'purchasePrice' => 'required|numeric',
             'description' => 'required',
-            'category_id' => 'required',
-            'supplier_id' => 'required'
+            'category_id' => 'required|numeric|exists:product_categories,id',
+            'supplier_id' => 'required|numeric|exists:suppliers,id'
         ];
     }
 

@@ -29,7 +29,7 @@ class ProductsTest extends TestCase
     public function testCreate()
     {
         $newProduct = factory(Product::class)->create();
-        if(Product::where('name', '=', $newProduct->name)->get() == null)
+        if(Product::where('name', '=', $newProduct->name)->first() == null)
         {
             $this->json("post", "/products", $newProduct->toArray());
             $this->assertResponseOk();
@@ -48,9 +48,18 @@ class ProductsTest extends TestCase
     {
         $update = factory(Product::class)->create();
         $product = Product::all()->random();
-        $this->json("put", "/products/{$product->id}", $update->toArray());
-        $this->assertResponseOk();
-        $this->seeInDatabase("products", $update->toArray());
+        if(Product::where('name', '=', $update->name)->first() == null or $product->name == $update->name)
+        {
+            $this->json("put", "/products/{$product->id}", $update->toArray());
+            $this->assertResponseOk();
+            $this->seeInDatabase("products", $update->toArray());
+        }
+        else
+        {
+            $this->json("put", "/products/{$product->id}", $update->toArray());
+            $this->assertResponseStatus(422);
+        }
+
     }
     /**
      * DELETE /products/{id}

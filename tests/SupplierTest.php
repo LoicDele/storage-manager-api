@@ -29,7 +29,7 @@ class SupplierTest extends TestCase
     public function testCreate()
     {
         $newSupplier = factory(Supplier::class)->create();
-        if(Supplier::where('name', '=', $newSupplier->name)->get() == null)
+        if(Supplier::where('name', '=', $newSupplier->name)->first() == null)
         {
             $this->json("post", "/productSuppliers", $newSupplier->toArray());
             $this->assertResponseOk();
