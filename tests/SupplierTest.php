@@ -33,7 +33,7 @@ class SupplierTest extends TestCase
         {
             $this->json("post", "/productSuppliers", $newSupplier->toArray());
             $this->assertResponseOk();
-            $this->seeInDatabase("suppliers", $newSupplier);
+            $this->seeInDatabase("suppliers", $newSupplier->toArray());
         }
         else
         {
@@ -48,10 +48,19 @@ class SupplierTest extends TestCase
     public function testUpdate()
     {
         $supplier = Supplier::all()->random();
-        $update = factory(Supplier::class)->raw();
-        $this->json("put", "/productSuppliers/{$supplier->id}", $update);
-        $this->assertResponseOk();
-        $this->seeInDatabase("suppliers", $update);
+        $update = factory(Supplier::class)->create();
+        if(Supplier::where('name', '=', $update->name)->first() == null or $supplier->name == $update->name)
+        {
+            $this->json("put", "/productSuppliers/{$supplier->id}", $update->toArray());
+            $this->assertResponseOk();
+            $this->seeInDatabase("suppliers", $update->toArray());
+        }
+        else
+        {
+            $this->json("put", "/productSuppliers/{$supplier->id}", $update->toArray());
+            $this->assertResponseStatus(422);
+        }
+
     }
     /**
      * DELETE /productSuppliers/{id}

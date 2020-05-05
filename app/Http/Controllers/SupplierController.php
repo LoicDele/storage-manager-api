@@ -32,9 +32,17 @@ class SupplierController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Supplier::getRules());
-        $supplier = new Supplier($request->all());
-        $supplier->save();
-        return response()->json($supplier, 200);
+        if(Supplier::where('name', '=', $request->name)->first() == null)
+        {
+            $supplier = new Supplier($request->all());
+            $supplier->save();
+            return response()->json($supplier, 200);
+        }
+        else
+        {
+            return response()->json("The name has already been taken.",422);
+        }
+
     }
 
     public function update(Request $request, $id)
@@ -47,9 +55,17 @@ class SupplierController extends Controller
         else
         {
             $this->validate($request, Supplier::getRules());
-            $supplier->fill($request->all());
-            $supplier->save();
-            return response()->json($supplier, 200);
+            if(Supplier::where('name', '=', $request->name)->first() == null or $supplier->name == $request->name)
+            {
+                $supplier->fill($request->all());
+                $supplier->save();
+                return response()->json($supplier, 200);
+            }
+            else
+            {
+                return response()->json("The name has already been taken.",422);
+            }
+
         }
     }
 
