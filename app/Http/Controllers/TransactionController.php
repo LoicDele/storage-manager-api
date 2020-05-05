@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Request;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Transaction;
 
@@ -30,7 +30,7 @@ class TransactionController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Transaction::getRules());
-        $transaction = new Transaction($request);
+        $transaction = new Transaction($request->all());
         $transaction->save();
         return response()->json($transaction, 200);
     }
@@ -40,14 +40,14 @@ class TransactionController extends Controller
         $transaction = Transaction::find($id);
         if($transaction == null)
         {
+            return response()->json('the transaction doesn\'t exist', 404);
+        }
+        else
+        {
             $this->validate($request, Transaction::getRules());
             $transaction->fill($request->all());
             $transaction->save();
             return response()->json($transaction, 200);
-        }
-        else
-        {
-            return response()->json('the transaction doesn\'t exist', 404);
         }
     }
 

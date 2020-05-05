@@ -23,7 +23,7 @@ class Transaction extends Model
             'price' => 'required',
             'product_id' => 'required|exists:products,id',
             'number' => 'required',
-            'paymentTypes_id' => 'required|exists:payment_types',
+            'paymentType_id' => 'required|exists:payment_types,id',
         ];
     }
 

@@ -20,8 +20,8 @@ class CreatePaymentTypesTable extends Migration
         });
 
         Schema::table('transactions', function (Blueprint $table) {
-           $table->integer('paymentTypes_id')->unsigned()->nullable();
-           $table->foreign('paymentTypes_id')->references('id')->on('payment_types')->onDelete('SET NULL');
+           $table->integer('paymentType_id')->unsigned()->nullable();
+           $table->foreign('paymentType_id')->references('id')->on('payment_types')->onDelete('SET NULL');
         });
     }
 

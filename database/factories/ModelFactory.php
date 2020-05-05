@@ -61,7 +61,7 @@ $factory->define(Transaction::class, function (Faker $faker) {
     return [
         'product_id' => Product::all()->random()->id,
         'price' => $faker->biasedNumberBetween(1, 100),
-        'paymentTypes_id' => PaymentType::all()->random()->id,
+        'paymentType_id' => PaymentType::all()->random()->id,
         'number' => $faker->biasedNumberBetween(1,100),
     ];
 });
