@@ -28,10 +28,19 @@ class SupplierTest extends TestCase
      */
     public function testCreate()
     {
-        $newSupplier = factory(Supplier::class)->raw();
-        $this->json("post", "/productSuppliers", $newSupplier);
-        $this->assertResponseOk();
-        $this->seeInDatabase("suppliers", $newSupplier);
+        $newSupplier = factory(Supplier::class)->create();
+        if(Supplier::where('name', '=', $newSupplier->name)->get() == null)
+        {
+            $this->json("post", "/productSuppliers", $newSupplier->toArray());
+            $this->assertResponseOk();
+            $this->seeInDatabase("suppliers", $newSupplier);
+        }
+        else
+        {
+            $this->json("post", "/productSuppliers", $newSupplier->toArray());
+            $this->assertResponseStatus(422);
+        }
+
     }
     /**
      * PUT /productSuppliers/{id}

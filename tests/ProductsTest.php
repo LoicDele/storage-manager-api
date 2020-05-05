@@ -28,21 +28,29 @@ class ProductsTest extends TestCase
      */
     public function testCreate()
     {
-        $newProduct = factory(Product::class)->raw();
-        $this->json("post", "/products", $newProduct);
-        $this->assertResponseOk();
-        $this->seeInDatabase("products", $newProduct);
+        $newProduct = factory(Product::class)->create();
+        if(Product::where('name', '=', $newProduct->name)->get() == null)
+        {
+            $this->json("post", "/products", $newProduct->toArray());
+            $this->assertResponseOk();
+            $this->seeInDatabase("products", $newProduct->toArray());
+        }
+        else
+        {
+            $this->json("post", "/products", $newProduct->toArray());
+            $this->assertResponseStatus(422);
+        }
     }
     /**
      * PUT /products/{id}
      */
     public function testUpdate()
     {
-        $update = factory(Product::class)->raw();
+        $update = factory(Product::class)->create();
         $product = Product::all()->random();
-        $this->json("put", "/products/{$product->id}", $update);
+        $this->json("put", "/products/{$product->id}", $update->toArray());
         $this->assertResponseOk();
-        $this->seeInDatabase("products", $update);
+        $this->seeInDatabase("products", $update->toArray());
     }
     /**
      * DELETE /products/{id}

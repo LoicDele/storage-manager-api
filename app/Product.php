@@ -23,6 +23,8 @@ class Product extends Model
             'salePrice' => 'required|numeric',
             'purchasePrice' => 'required|numeric',
             'description' => 'required',
+            'category_id' => 'required',
+            'supplier_id' => 'required'
         ];
     }
 

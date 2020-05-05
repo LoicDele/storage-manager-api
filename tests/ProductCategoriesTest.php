@@ -28,10 +28,19 @@ class ProductsCategoriesTest extends TestCase
      */
     public function testCreate()
     {
-        $newProductCategory = factory(ProductCategory::class)->raw();
-        $this->json("post", "/productCategories", $newProductCategory);
-        $this->assertResponseOk();
-        $this->seeInDatabase("product_categories", $newProductCategory);
+        $newProductCategory = factory(ProductCategory::class)->create();
+        if(ProductCategory::where('name', '=', $newProductCategory->name)->get() == null)
+        {
+            $this->json("post", "/productCategories", $newProductCategory->toArray());
+            $this->assertResponseOk();
+            $this->seeInDatabase("product_categories", $newProductCategory->toArray());
+        }
+        else
+        {
+            $this->json("post", "/productCategories", $newProductCategory->toArray());
+            $this->assertResponseStatus(422);
+        }
+
     }
     /**
      * PUT /productCategories/{id}
