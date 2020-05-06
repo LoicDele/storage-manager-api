@@ -11,7 +11,7 @@ class SupplierSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Supplier::class, 10)->create()->each(function ($supplier) {
+        factory(\App\Supplier::class, 100)->create()->each(function ($supplier) {
             $supplier->save();
         });
     }

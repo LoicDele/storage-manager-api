@@ -12,7 +12,7 @@ class PaymentTypeSeeder extends Seeder
      */
     public function run()
     {
-        factory(PaymentType::class, 10)->create()->each(function ($paymentType) {
+        factory(PaymentType::class, 100)->create()->each(function ($paymentType) {
             $paymentType->save();
         });
     }

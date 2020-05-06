@@ -12,7 +12,7 @@ class TransactionSeeder extends Seeder
      */
     public function run()
     {
-        factory(Transaction::class, 10)->create()->each(function ($transaction) {
+        factory(Transaction::class, 100)->create()->each(function ($transaction) {
             $transaction->save();
         });
     }

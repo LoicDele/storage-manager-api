@@ -44,11 +44,37 @@ class PaymentTypeController extends Controller
 
     public function update($id, Request $request)
     {
-
+        $paymentType = PaymentType::find($id);
+        if($paymentType == null)
+        {
+            return response()->json("The payment type doesn\'t exist", 404);
+        }
+        else
+        {
+            if(PaymentType::where('name', '=', $request->name) == null or $paymentType->name == $request->name)
+            {
+                $paymentType->fill($request->all());
+                $paymentType->save();
+                return response()->json($paymentType, 200);
+            }
+            else
+            {
+                return response()->json("The name has already been taken.",422);
+            }
+        }
     }
 
     public function delete($id)
     {
-
+        $paymentType = PaymentType::find($id);
+        if($paymentType == null)
+        {
+            return response()->json("The payment type doesn\'t exist", 404);
+        }
+        else
+        {
+            $paymentType->delete();
+            return response()->json("the payment type is deleted", 200);
+        }
     }
 }
