@@ -51,7 +51,7 @@ class ProductsCategoriesTest extends TestCase
         $productCategory = ProductCategory::all()->random();
         if(ProductCategory::where('name', '=', $productCategory->name)->first() == null or $update->name == $productCategory->name)
         {
-            $this->json("put", "/productCategories/{$productCategory->id}", $update);
+            $this->json("put", "/productCategories/{$productCategory->id}", $update->toArray());
             $this->assertResponseOk();
             $this->seeInDatabase("product_categories", $update);
         }
