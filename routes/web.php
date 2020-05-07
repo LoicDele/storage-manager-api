@@ -50,3 +50,7 @@ $router->get('/transactions/{id}', 'TransactionController@show');
 $router->post('/transactions', 'TransactionController@create');
 $router->put('/transactions/{id}', 'TransactionController@update');
 $router->delete('transactions/{id}', 'TransactionController@delete');
+//Routing for Users
+$router->get('/users', 'UserController@index');
+$router->get('/users/{id}', 'UserController@show');
+$router->delete('/users/{id}', 'UserController@delete');
