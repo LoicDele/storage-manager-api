@@ -2,12 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Supplier;
 use App\Models\Transaction;
 use App\Models\PaymentType;
+use Illuminate\Support\Facades\Hash;
 use Faker\Generator as Faker;
 
 /*
@@ -57,6 +58,7 @@ $factory->define(PaymentType::class, function (Faker $faker) {
      'name' => $faker->word,
    ];
 });
+
 $factory->define(Transaction::class, function (Faker $faker) {
     return [
         'product_id' => Product::all()->random()->id,
@@ -64,4 +66,14 @@ $factory->define(Transaction::class, function (Faker $faker) {
         'paymentType_id' => PaymentType::all()->random()->id,
         'number' => $faker->biasedNumberBetween(1,100),
     ];
+});
+
+$factory->define(User::class, function (Faker $faker) {
+   return [
+      'name' => $faker->name,
+      'email' => $faker->email,
+      'password' => Hash::make('1234', [
+          'rounds' => 12
+      ]),
+   ] ;
 });
