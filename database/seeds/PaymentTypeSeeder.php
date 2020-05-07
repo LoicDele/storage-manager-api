@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\PaymentType;
+use App\Models\PaymentType;
 
 class PaymentTypeSeeder extends Seeder
 {

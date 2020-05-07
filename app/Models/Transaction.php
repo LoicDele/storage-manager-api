@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Http\Controllers\PaymentTypeController;
 use Illuminate\Auth\Authenticatable;

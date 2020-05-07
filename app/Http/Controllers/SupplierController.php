@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Supplier;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 

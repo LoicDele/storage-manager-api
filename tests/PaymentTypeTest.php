@@ -2,7 +2,7 @@
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
-use App\PaymentType;
+use App\Models\PaymentType;
 
 class PaymentTypeTest extends TestCase
 {

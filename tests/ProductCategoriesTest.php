@@ -1,6 +1,6 @@
 <?php
 
-use App\ProductCategory;
+use App\Models\ProductCategory;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 

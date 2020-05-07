@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Supplier;
 
 class SupplierSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class SupplierSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Supplier::class, 100)->create()->each(function ($supplier) {
+        factory(Supplier::class, 100)->create()->each(function ($supplier) {
             $supplier->save();
         });
     }

@@ -3,11 +3,11 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
-use App\Product;
-use App\ProductCategory;
-use App\Supplier;
-use App\Transaction;
-use App\PaymentType;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\Supplier;
+use App\Models\Transaction;
+use App\Models\PaymentType;
 use Faker\Generator as Faker;
 
 /*

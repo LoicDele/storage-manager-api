@@ -2,7 +2,7 @@
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
-use App\Supplier;
+use App\Models\Supplier;
 
 class SupplierTest extends TestCase
 {
@@ -19,7 +19,7 @@ class SupplierTest extends TestCase
      */
     public function testShow()
     {
-        $id = \App\Supplier::all()->random()->id;
+        $id = Supplier::all()->random()->id;
         $this->json("get", "/productSuppliers/{$id}");
         $this->assertResponseOk();
     }

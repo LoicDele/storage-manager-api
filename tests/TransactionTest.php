@@ -2,7 +2,7 @@
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
-use App\Transaction;
+use App\Models\Transaction;
 
 class TransactionTest extends TestCase
 {
