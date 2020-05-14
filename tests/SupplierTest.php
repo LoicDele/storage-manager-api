@@ -28,16 +28,16 @@ class SupplierTest extends TestCase
      */
     public function testCreate()
     {
-        $newSupplier = factory(Supplier::class)->create();
-        if(Supplier::where('name', '=', $newSupplier->name)->first() == null)
+        $newSupplier = factory(Supplier::class)->raw();
+        if(Supplier::where('name', '=', $newSupplier['name'])->first() == null)
         {
-            $this->json("post", "/productSuppliers", $newSupplier->toArray());
+            $this->json("post", "/productSuppliers", $newSupplier);
             $this->assertResponseOk();
-            $this->seeInDatabase("suppliers", $newSupplier->toArray());
+            $this->seeInDatabase('suppliers', $newSupplier);
         }
         else
         {
-            $this->json("post", "/productSuppliers", $newSupplier->toArray());
+            $this->json("post", "/productSuppliers", $newSupplier);
             $this->assertResponseStatus(422);
         }
 
@@ -48,16 +48,16 @@ class SupplierTest extends TestCase
     public function testUpdate()
     {
         $supplier = Supplier::all()->random();
-        $update = factory(Supplier::class)->create();
-        if(Supplier::where('name', '=', $update->name)->first() == null or $supplier->name == $update->name)
+        $update = factory(Supplier::class)->raw();
+        if(Supplier::where('name', '=', $update['name'])->first() == null or $supplier->name == $update['name'])
         {
-            $this->json("put", "/productSuppliers/{$supplier->id}", $update->toArray());
+            $this->json("put", "/productSuppliers/{$supplier->id}", $update);
             $this->assertResponseOk();
-            $this->seeInDatabase("suppliers", $update->toArray());
+            $this->seeInDatabase("suppliers", $update);
         }
         else
         {
-            $this->json("put", "/productSuppliers/{$supplier->id}", $update->toArray());
+            $this->json("put", "/productSuppliers/{$supplier->id}", $update);
             $this->assertResponseStatus(422);
         }
 

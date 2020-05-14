@@ -19,7 +19,7 @@ class PaymentType extends Model
     public static function getRules()
     {
         return [
-            'name' => 'required|unique:payment_types',
+            'name' => 'required',
         ];
     }
 

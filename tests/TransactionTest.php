@@ -28,8 +28,8 @@ class TransactionTest extends TestCase
      */
     public function testCreate()
     {
-        $transaction = factory(Transaction::class)->create();
-        $this->json("post", "/transactions", $transaction->toArray());
+        $transaction = factory(Transaction::class)->raw();
+        $this->json("post", "/transactions", $transaction);
         $this->assertResponseOk();
     }
     /**
@@ -37,9 +37,9 @@ class TransactionTest extends TestCase
      */
     public function testUpdate()
     {
-        $update = factory(Transaction::class)->create();
+        $update = factory(Transaction::class)->raw();
         $id = Transaction::all()->random()->id;
-        $this->json("put", "/transactions/{$id}", $update->toArray());
+        $this->json("put", "/transactions/{$id}", $update);
         $this->assertResponseOk();
     }
     /**

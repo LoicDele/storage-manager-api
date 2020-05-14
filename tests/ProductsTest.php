@@ -28,16 +28,16 @@ class ProductsTest extends TestCase
      */
     public function testCreate()
     {
-        $newProduct = factory(Product::class)->create();
-        if(Product::where('name', '=', $newProduct->name)->first() == null)
+        $newProduct = factory(Product::class)->raw();
+        if(Product::where('name', '=', $newProduct['name'])->first() == null)
         {
-            $this->json("post", "/products", $newProduct->toArray());
+            $this->json("post", "/products", $newProduct);
             $this->assertResponseOk();
-            $this->seeInDatabase("products", $newProduct->toArray());
+            $this->seeInDatabase("products", $newProduct);
         }
         else
         {
-            $this->json("post", "/products", $newProduct->toArray());
+            $this->json("post", "/products", $newProduct);
             $this->assertResponseStatus(422);
         }
     }
@@ -46,17 +46,17 @@ class ProductsTest extends TestCase
      */
     public function testUpdate()
     {
-        $update = factory(Product::class)->create();
+        $update = factory(Product::class)->raw();
         $product = Product::all()->random();
-        if(Product::where('name', '=', $update->name)->first() == null or $product->name == $update->name)
+        if(Product::where('name', '=', $update['name'])->first() == null or $product->name == $update['name'])
         {
-            $this->json("put", "/products/{$product->id}", $update->toArray());
+            $this->json("put", "/products/{$product->id}", $update);
             $this->assertResponseOk();
-            $this->seeInDatabase("products", $update->toArray());
+            $this->seeInDatabase("products", $update);
         }
         else
         {
-            $this->json("put", "/products/{$product->id}", $update->toArray());
+            $this->json("put", "/products/{$product->id}", $update);
             $this->assertResponseStatus(422);
         }
 

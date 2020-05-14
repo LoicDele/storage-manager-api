@@ -53,7 +53,7 @@ class ProductsCategoriesTest extends TestCase
         {
             $this->json("put", "/productCategories/{$productCategory->id}", $update->toArray());
             $this->assertResponseOk();
-            $this->seeInDatabase("product_categories", $update);
+            $this->seeInDatabase("product_categories", $update->toArray());
         }
         else
         {

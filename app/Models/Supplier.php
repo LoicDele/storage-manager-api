@@ -20,7 +20,7 @@ class Supplier extends Model
     {
         return [
             'name' => 'required',
-            'phoneNumber' => 'required|max:15',
+            'phoneNumber' => 'required|max:30',
             'address' => 'required|max:100',
             'mail' => 'required|email|max:30',
         ];

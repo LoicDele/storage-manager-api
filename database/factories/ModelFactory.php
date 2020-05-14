@@ -72,8 +72,6 @@ $factory->define(User::class, function (Faker $faker) {
    return [
       'name' => $faker->name,
       'email' => $faker->email,
-      'password' => Hash::make('1234', [
-          'rounds' => 12
-      ]),
+      'password' => '1234',
    ] ;
 });

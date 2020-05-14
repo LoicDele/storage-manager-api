@@ -51,7 +51,7 @@ class PaymentTypeController extends Controller
         }
         else
         {
-            if(PaymentType::where('name', '=', $request->name) == null or $paymentType->name == $request->name)
+            if(PaymentType::where('name', '=', $request->name)->first() == null or $paymentType->name == $request->name)
             {
                 $paymentType->fill($request->all());
                 $paymentType->save();

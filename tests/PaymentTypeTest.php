@@ -28,16 +28,16 @@ class PaymentTypeTest extends TestCase
      */
     public function testCreate()
     {
-        $paymentType = factory(PaymentType::class)->create();
-        if(PaymentType::where('name', '=', $paymentType->name) == null)
+        $paymentType = factory(PaymentType::class)->raw();
+        if(PaymentType::where('name', '=', $paymentType['name'])->first() == null)
         {
-            $this->json("post", "/paymentTypes", $paymentType->toArray());
+            $this->json("post", "/paymentTypes", $paymentType);
             $this->assertResponseOk();
-            $this->seeInDatabase('payment_types', $paymentType->toArray());
+            $this->seeInDatabase('payment_types', $paymentType);
         }
         else
         {
-            $this->json("post", "/paymentTypes", $paymentType->toArray());
+            $this->json("post", "/paymentTypes", $paymentType);
             $this->assertResponseStatus(422);
         }
     }
@@ -47,16 +47,16 @@ class PaymentTypeTest extends TestCase
     public function testUpdate()
     {
         $paymentType = PaymentType::all()->random();
-        $update = factory(PaymentType::class)->create();
-        if(PaymentType::where('name', '=', $update->name) == null or $update->name == $paymentType->name)
+        $update = factory(PaymentType::class)->raw();
+        if(PaymentType::where('name', '=', $update['name'])->first() == null or $update['name'] == $paymentType->name)
         {
-            $this->json("put", "/paymentTypes/{$paymentType->id}", $update->toArray());
+            $this->json("put", "/paymentTypes/{$paymentType->id}", $update);
             $this->assertResponseOk();
-            $this->seeInDatabase('payment_types', $update->toArray());
+            $this->seeInDatabase('payment_types', $update);
         }
         else
         {
-            $this->json("put", "/paymentTypes/{$paymentType->id}", $update->toArray());
+            $this->json("put", "/paymentTypes/{$paymentType->id}", $update);
             $this->assertResponseStatus(422);
         }
     }

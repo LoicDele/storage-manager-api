@@ -29,4 +29,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public static function getRules()
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+    }
 }
