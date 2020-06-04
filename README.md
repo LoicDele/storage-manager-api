@@ -9,12 +9,12 @@ This REST API allows to manage a little store.
 
 If you want to comment or improve my work, I will be happy to converse with you!
 
-## TO DO
+## To Do
 
 - JWT authentication
 - Documentation 
 
-## Some Usemful Commands
+## Some Useful Commands
 
 - ``composer install``: install dependencies of the project
 - ``php artisan migrate``: migrate the sql schema (don't forget to configure the .env)
