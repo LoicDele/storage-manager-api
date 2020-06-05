@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
 [![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
 
-storage-manager-api is a REST API developed with the Lumen PHP Framework. The goal of this personal project is to learn every subtlety of REST API and BACK-END services. When the development of this API will be finished, i will start developing the FRONT-END in ANGULAR (the language can change).
+storage-manager-api is a REST API developed with the Lumen PHP Framework. The goal of this personal project is to learn every subtlety of REST API and BACK-END services. When the development of this API will be finished, i will start developing the FRONT-END in ANGULAR (the framework can change).
 
 This REST API allows to manage a little store.
 
@@ -20,7 +20,7 @@ If you want to comment or improve my work, I will be happy to converse with you!
 - ``php artisan migrate``: migrate the sql schema (don't forget to configure the .env)
 - ``php artisan db:seed``: create false data in the DataBase
 - ``vendor/bin/phpunit``: launch unit tests
-- ``php -S localhost:8000 -t public``: lauch the application on localhost:8000
+- ``php -S localhost:8000 -t public``: launch the application on localhost:8000
 
 ## Official Documentation
 
